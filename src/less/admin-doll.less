@@ -27,6 +27,7 @@ html, body {
 }
 
 .wrapper {
+
   flex-grow: 1;
   background-color: #f2f2f2;
 
@@ -35,13 +36,24 @@ html, body {
     border-right-width: 1px;
     width: 190px;
 
+    // 左侧菜单
     .nav-list {
 
       list-style: none;
 
       li {
 
-        a {
+        &.open {
+          > .sub-menu {
+            display: block;
+          }
+          > a {
+            color: lighten(@navbar-default-bg, 10%);
+            border-left-color: @navbar-default-bg;
+          }
+        }
+        > a {
+
           display: block;
           width: 100%;
           color: #585858;
@@ -85,18 +97,80 @@ html, body {
 
       // 子菜单
       .sub-menu {
+
+        display: none;
         list-style: none;
         padding: 0;
         margin: 0;
         background-color: white;
+        position: relative;
+
+        // 竖线
+        &:before {
+          content: "";
+          display: block;
+          width: 1px;
+          height: 100%;
+          border-left: 1px dotted #9dbdd6;
+          position: absolute;
+          left: 28px;
+          z-index: 100;
+          overflow: hidden;
+        }
         li {
+          border: 0 solid transparent;
+          border-bottom-width: 1px;
+          border-bottom-color: #e4e4e4;
           a {
+
             display: block;
+            padding: 7px 0 9px 48px;
             background-color: white;
             border: 0 solid transparent;
-            border-bottom-width: 1px;
-            border-bottom-color: #e4e4e4;
-            padding: 7px 0 9px 37px;
+            position: relative;
+
+            &:before {
+              content: "";
+              display: block;
+              width: 7px;
+              height: 1px;
+              border-bottom: 1px dotted #9dbdd6;
+              position: absolute;
+              left: 0;
+              right: 0;
+              top: 0;
+              bottom: 0;
+              margin: auto 30px;
+            }
+
+            &:hover {
+              color: #4b88b7;
+              background-color: #f1f5f9;
+              text-decoration: none;
+              &:before {
+                display: none;
+              }
+              > .m-icon {
+                display: block;
+              }
+            }
+
+            > .m-icon {
+              display: none;
+              position: absolute;
+              left: 0;
+              right: 0;
+              top: 0;
+              bottom: 0;
+              margin: auto 27px;
+              width: 12px;
+              height: 12px;
+              color: inherit;
+              z-index: 101;
+              background-color: inherit;
+              font-size: 12px;
+            }
+
           }
         }
       }
